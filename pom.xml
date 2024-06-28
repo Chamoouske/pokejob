@@ -36,6 +36,7 @@
         <surefire.version>3.2.5</surefire.version>
         <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
         <feign-client.version>4.1.2</feign-client.version>
+        <jackson.version>2.17.1</jackson.version>
 
         <arq.line>-Dfile. encoding=UTF-8 -Xdebug -Xnoagent</arq.line>
         <sonar.report>${project.basedir}/target/reports/jacoco.exec</sonar.report>
@@ -86,6 +87,22 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>${feign-client.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -102,6 +119,7 @@
                     </excludes>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
