@@ -1,3 +1,8 @@
 spring:
   application:
     name: pokejob
+
+servico:
+  pokeapi:
+    url-base: https://pokeapi.co/api/v2
+    url-pokemon: ${servico.pokeapi.url-base}/pokemon
