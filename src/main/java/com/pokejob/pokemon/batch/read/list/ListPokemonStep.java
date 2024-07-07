@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ListPokemonStep {
-    private static final Integer NUMERO_PADRAO_CHUNKS = 5;
+    private static final Integer NUMERO_PADRAO_CHUNKS = 1;
     private final JobRepository jobRepository;
     private final DataSourceTransactionManager dataSourceTransactionManager;
     private final FlatFileItemReader<PokemonFileDto> reader;
