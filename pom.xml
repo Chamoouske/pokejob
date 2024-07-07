@@ -38,8 +38,17 @@
         <feign-client.version>4.1.2</feign-client.version>
         <jackson.version>2.17.1</jackson.version>
 
-        <arq.line>-Dfile. encoding=UTF-8 -Xdebug -Xnoagent</arq.line>
-        <sonar.report>${project.basedir}/target/reports/jacoco.exec</sonar.report>
+        <arq.line>-Dfile.encoding=UTF-8</arq.line>
+
+        <sonar.organization>chamoouske</sonar.organization>
+        <sonar.projectKey>chamoouske_pokejob</sonar.projectKey>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ../pokejob/target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.java.source>${java.version}</sonar.java.source>
+        <sonar.report>${project.build.directory}/reports/jacoco.exec</sonar.report>
+        <sonar.java.libraries>target/classes/**</sonar.java.libraries>
     </properties>
 
     <dependencies>
@@ -53,7 +62,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-batch</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -202,31 +211,29 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
+
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
+                        <id>jacoco-initialize</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
-                        <configuration>
-                            <destFile>${sonar.report}</destFile>
-                            <propertyName>surefireArgLine</propertyName>
-                        </configuration>
                     </execution>
                     <execution>
-                        <id>report</id>
-                        <phase>test</phase>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            <dataFile>${sonar.report}</dataFile>
-                            <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
+
+                <configuration>
+                    <excludes>
+                        <exclude>**/config/**</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
