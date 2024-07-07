@@ -38,7 +38,7 @@
         <feign-client.version>4.1.2</feign-client.version>
         <jackson.version>2.17.1</jackson.version>
 
-        <arq.line>-Dfile. encoding=UTF-8 -Xdebug -Xnoagent</arq.line>
+        <arq.line>-Dfile.encoding=UTF-8</arq.line>
         <sonar.report>${project.basedir}/target/reports/jacoco.exec</sonar.report>
     </properties>
 
@@ -171,6 +171,8 @@
                         </property>
                     </properties>
                     <argLine>${arq.line}</argLine>
+                    <forkCount>3</forkCount>
+                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
                 </configuration>
             </plugin>
             <plugin>
